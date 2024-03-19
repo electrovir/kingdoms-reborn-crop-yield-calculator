@@ -44,7 +44,15 @@ export const VirCalculator = defineElement<{
         }
     `,
     renderCallback({inputs, events, dispatch}) {
-        const selectedCrops: Crop[] = Object.values(inputs.crops);
+        const selectedCrops: Crop[] = Object.values(inputs.crops).sort((a, b) => {
+            const isFoodCompare = Number(b.isFood || 0) - Number(a.isFood || 0);
+
+            if (isFoodCompare) {
+                return isFoodCompare;
+            } else {
+                return a.name.localeCompare(b.name);
+            }
+        });
 
         const {errors, cropStats} = convertToStats(
             inputs.calculationInputs.farmSize,
