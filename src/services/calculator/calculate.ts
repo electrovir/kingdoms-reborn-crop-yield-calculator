@@ -1,4 +1,4 @@
-import {clamp} from '@augment-vir/common';
+import {clamp, isTruthy} from '@augment-vir/common';
 import {Crop} from './crops';
 import {farmStats} from './farm';
 
@@ -40,9 +40,11 @@ export function calculateStats(
             label: 'per worker',
             value: harvest / Math.ceil(workers),
         },
-        {
-            label: 'approx people fed',
-            value: Math.floor(harvest / 12),
-        },
-    ];
+        crop.isFood
+            ? {
+                  label: 'approx people fed',
+                  value: Math.floor(harvest / 12),
+              }
+            : undefined,
+    ].filter(isTruthy);
 }
