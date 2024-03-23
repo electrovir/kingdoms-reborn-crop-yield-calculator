@@ -52,8 +52,20 @@ const cropDefinitions = {
         fertilityDependence: 90,
     },
     // Rice: {},
-    // Melon: {},
-    // Blueberry: {},
+    Melon: {
+        yield: 97,
+        fertilityDependence: 120,
+    },
+    Blueberry: {
+        yield: 69,
+        fertilityDependence: 70,
+        isFood: true,
+    },
+    Pumpkin: {
+        yield: 60,
+        fertilityDependence: 50,
+        isFood: true,
+    },
     // Corn: {},
 } satisfies Record<string, Omit<Crop, 'name'>>;
 
